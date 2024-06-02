@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TestesUnitarios.Desafio.Console.Services;
 
 namespace TestesUnitarios.Desafio.Tests;
@@ -42,13 +44,17 @@ public class ValidacoesListaTests
         // Arrange
         var lista = new List<int> { 5, -1, -8, 9 };
         var numeroParaProcurar = 10;
-
         // Act
+        var contemNumero = lista.Contains(numeroParaProcurar);
 
         // Assert
+        Assert.False(contemNumero, $"A lista contém o número {numeroParaProcurar}.");
     }
-
+    
+    public class Multiplicar
+    {
     //TODO: Corrigir a anotação [Fact]
+    [Fact]
     public void DeveMultiplicarOsElementosDaListaPor2()
     {
         //TODO: Implementar método de teste
@@ -58,9 +64,12 @@ public class ValidacoesListaTests
         var resultadoEsperado = new List<int> { 10, 14, 16, 18 };
         
         // Act
+        var resultado = lista.Select(x => x * 2).ToList();
 
         // Assert
+        Assert.Equal(resultadoEsperado, resultado);
     }
+}
 
     [Fact]
     public void DeveRetornar9ComoMaiorNumeroDaLista()
@@ -71,10 +80,12 @@ public class ValidacoesListaTests
         var lista = new List<int> { 5, -1, -8, 9 };
 
         // Act
+        var maiorNumero = lista.Max();
 
         // Assert
+
         //TODO: Corrigir o Assert.Equal com base no retorno da chamada ao método
-        Assert.Equal(9, 9);
+        Assert.Equal(9, maiorNumero);
     }
 
     [Fact]
@@ -89,7 +100,7 @@ public class ValidacoesListaTests
         var resultado = _validacoes.RetornarMenorNumeroLista(lista);
 
         // Assert
+        Assert.Equal(-8, resultado);
         //TODO: Corrigir o Assert.Equal com base no retorno da chamada ao método
-        Assert.Equal(-8, -8);
     }
 }
